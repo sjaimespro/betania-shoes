@@ -1,0 +1,455 @@
+<title>Betania Shoes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF5F1;
+    --surface:#FFFFFF;
+    --surface-2:#F4E7E1;
+    --ink:#2A1D22;
+    --ink-soft:#7A666A;
+    --accent:#A8324A;
+    --accent-deep:#7A2338;
+    --accent-soft:#EBD1CC;
+    --line:#E7D7D0;
+    --gold:#AD8A50;
+    --shadow: 0 1px 2px rgba(42,29,34,.06), 0 8px 24px -12px rgba(42,29,34,.18);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1E1417;
+      --surface:#2A1C20;
+      --surface-2:#3A272B;
+      --ink:#F5E9E6;
+      --ink-soft:#C9AFAF;
+      --accent:#E895A4;
+      --accent-deep:#F4B7C2;
+      --accent-soft:#4A2E33;
+      --line:#4A3438;
+      --gold:#D9B172;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1E1417;
+    --surface:#2A1C20;
+    --surface-2:#3A272B;
+    --ink:#F5E9E6;
+    --ink-soft:#C9AFAF;
+    --accent:#E895A4;
+    --accent-deep:#F4B7C2;
+    --accent-soft:#4A2E33;
+    --line:#4A3438;
+    --gold:#D9B172;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', system-ui, sans-serif;
+    padding-inline:20px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', Georgia, serif;
+    text-wrap:balance;
+    margin:0;
+  }
+  a{color:inherit;}
+  .tabular{font-variant-numeric:tabular-nums;}
+
+  /* --- top notice --- */
+  .notice{
+    display:flex; align-items:center; gap:10px;
+    background:var(--surface-2);
+    color:var(--ink-soft);
+    font-size:.82rem;
+    padding:10px 14px;
+    border-radius:10px;
+    margin-block-start:14px;
+    border:1px dashed var(--line);
+  }
+  .notice button{
+    margin-left:auto;
+    background:none;border:none;color:var(--ink-soft);
+    font-size:1rem; cursor:pointer; line-height:1; padding:4px;
+  }
+
+  /* --- header --- */
+  header{
+    position:sticky; top:env(safe-area-inset-top,0px);
+    background:var(--bg);
+    padding-block:16px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    z-index:10;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:32px; height:32px; flex:none; border-radius:50%;
+    background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:1rem;
+  }
+  .brand-name{font-size:1.3rem; font-weight:600;}
+  .brand-tag{font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; text-transform:uppercase;}
+  nav{display:flex; gap:18px; font-size:.88rem; font-weight:500;}
+  nav a{text-decoration:none; color:var(--ink-soft);}
+  nav a:hover, nav a:focus-visible{color:var(--accent);}
+
+  .btn-wsp{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--accent); color:#fff;
+    padding:9px 16px; border-radius:100px;
+    font-weight:600; font-size:.86rem;
+    text-decoration:none; white-space:nowrap;
+    box-shadow:var(--shadow);
+    border:none; cursor:pointer;
+  }
+  .btn-wsp:hover{background:var(--accent-deep);}
+  .btn-wsp svg{width:16px;height:16px;fill:#fff;flex:none;}
+
+  /* --- hero --- */
+  .hero{
+    padding-block:44px 30px;
+    display:grid; grid-template-columns:1.15fr 1fr; gap:32px; align-items:center;
+  }
+  .hero h1{font-size:clamp(1.9rem, 3.4vw, 2.7rem); font-weight:600; line-height:1.08;}
+  .hero h1 em{color:var(--accent); font-style:italic;}
+  .hero p{color:var(--ink-soft); font-size:1.02rem; max-width:48ch; margin-block-start:14px;}
+  .hero-actions{display:flex; gap:12px; margin-block-start:22px; flex-wrap:wrap;}
+  .btn-outline{
+    border:1px solid var(--line); padding:9px 16px; border-radius:100px;
+    font-weight:600; font-size:.86rem; text-decoration:none; color:var(--ink);
+  }
+  .stat-row{display:flex; gap:26px; margin-block-start:28px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.4rem;}
+  .stat span{font-size:.74rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em;}
+
+  .hero-art{
+    background:var(--surface-2); border-radius:22px;
+    aspect-ratio:4/5; max-width:300px; justify-self:end;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .hero-art img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  /* --- filters --- */
+  .filters{
+    display:flex; gap:9px; flex-wrap:wrap;
+    padding-block:6px 22px;
+    position:sticky; top:calc(66px + env(safe-area-inset-top,0px));
+    background:var(--bg); z-index:9;
+  }
+  .chip{
+    border:1px solid var(--line); background:var(--surface);
+    padding:7px 15px; border-radius:100px; font-size:.83rem; font-weight:500;
+    cursor:pointer; color:var(--ink-soft);
+  }
+  .chip.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+
+  /* --- section titles --- */
+  .section-head{margin-block:34px 16px; display:flex; align-items:baseline; gap:12px;}
+  .section-head h2{font-size:1.35rem; font-weight:600;}
+  .section-head span{font-size:.8rem; color:var(--ink-soft);}
+
+  /* --- grid --- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(210px,1fr));
+    gap:18px;
+    padding-block-end:12px;
+  }
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    overflow:hidden; display:flex; flex-direction:column;
+    box-shadow:var(--shadow);
+  }
+  .card-art{
+    background:var(--surface-2); aspect-ratio:4/5;
+    position:relative; overflow:hidden;
+  }
+  .card-art img{width:100%; height:100%; object-fit:cover; display:block;}
+  .badge{
+    position:absolute; top:10px; left:10px;
+    background:var(--surface); color:var(--ink-soft);
+    font-size:.66rem; font-weight:600; text-transform:uppercase; letter-spacing:.03em;
+    padding:4px 9px; border-radius:100px; border:1px solid var(--line);
+  }
+  .card-body{padding:14px 14px 16px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .card-name{font-family:'Fraunces',serif; font-size:1.02rem; font-weight:600; line-height:1.2;}
+  .card-meta{font-size:.78rem; color:var(--ink-soft);}
+  .card-price{font-size:1.05rem; font-weight:700; color:var(--accent-deep);}
+  .card-foot{display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:6px;}
+  .card-foot .btn-wsp{padding:7px 13px; font-size:.78rem; width:100%; justify-content:center;}
+
+  /* --- banner card (correas cruzadas: una sola foto con varios colores) --- */
+  .banner-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:18px;
+    overflow:hidden; box-shadow:var(--shadow);
+    display:grid; grid-template-columns:1.3fr 1fr;
+  }
+  .banner-card img{width:100%; height:100%; object-fit:cover; display:block; min-height:180px;}
+  .banner-info{padding:22px; display:flex; flex-direction:column; gap:10px;}
+  .banner-info h3{font-family:'Fraunces',serif; font-size:1.2rem; font-weight:600;}
+  .banner-info p{margin:0; color:var(--ink-soft); font-size:.88rem;}
+  .color-list{display:flex; flex-wrap:wrap; gap:6px; margin-block:2px 4px;}
+  .color-tag{
+    font-size:.72rem; font-weight:600; padding:4px 10px; border-radius:100px;
+    background:var(--surface-2); border:1px solid var(--line); color:var(--ink);
+  }
+  .banner-price{font-size:1.15rem; font-weight:700; color:var(--accent-deep); margin-block-start:4px;}
+  .banner-card + .grid{margin-block-start:18px;}
+  @media (max-width:600px){
+    .banner-card{grid-template-columns:1fr;}
+    .banner-card img{aspect-ratio:16/10; min-height:0;}
+  }
+
+  /* --- how to order --- */
+  .steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    margin-block:10px 8px;
+  }
+  .step{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px;}
+  .step em{
+    font-style:normal; font-family:'Fraunces',serif; color:var(--accent);
+    font-size:1.3rem; display:block; margin-block-end:6px;
+  }
+  .step p{margin:0; font-size:.86rem; color:var(--ink-soft);}
+
+  footer{
+    margin-block-start:44px; padding-block:26px;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    font-size:.82rem; color:var(--ink-soft);
+  }
+  footer .fbrand{color:var(--ink); font-weight:600; font-family:'Fraunces',serif; font-size:1rem;}
+  footer .fcol{display:flex; flex-direction:column; gap:5px;}
+
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr;}
+    .hero-art{justify-self:center; max-width:240px;}
+    .steps{grid-template-columns:1fr;}
+    nav{display:none;}
+    .filters{position:static;}
+  }
+</style>
+
+<div class="notice" id="notice">
+  📝 Catálogo de Betania Shoes: precio único S/ 38 y WhatsApp +51 912 444 453 en cada botón. Desde el celular, "Pedir por WhatsApp" adjunta la foto del modelo automáticamente.
+  <button aria-label="Cerrar aviso" onclick="document.getElementById('notice').style.display='none'">✕</button>
+</div>
+
+<header>
+  <div class="brand">
+    <div class="brand-mark" id="brandMark">B</div>
+    <div>
+      <div class="brand-name" id="brandName">Betania Shoes</div>
+      <div class="brand-tag" id="brandTag">Calzado femenino · Lima, Perú</div>
+    </div>
+  </div>
+  <nav id="navLinks"></nav>
+  <a class="btn-wsp" id="wspHeader" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>
+    Pedir por WhatsApp
+  </a>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Balerinas para <em>cada paso</em> de tu día</h1>
+    <p>Modelos con moño y hebilla, en lunares y con correas cruzadas, en cuero y charol. Un precio único, con envíos a todo el Perú.</p>
+    <div class="hero-actions">
+      <a class="btn-wsp" id="wspHero" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>
+        Hacer un pedido
+      </a>
+      <a class="btn-outline" id="verCatalogo" href="#mono">Ver catálogo</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b class="tabular" id="statPrecio">S/ 38</b><span>Precio único</span></div>
+      <div class="stat"><b class="tabular" id="statTallas">35–40</b><span>Tallas disponibles</span></div>
+      <div class="stat"><b class="tabular" id="statColores">30</b><span>Colores en catálogo</span></div>
+    </div>
+  </div>
+  <div class="hero-art"><img id="heroImg" src="imgs/xiomi-negro.jpg" alt="Balerina Modelo Xiomi en negro"></div>
+</section>
+
+<div class="filters" id="filters"></div>
+
+<div id="catSections"></div>
+
+<section id="pedidos">
+  <div class="section-head"><h2>Cómo pedir</h2><span>Tres pasos, todo por WhatsApp</span></div>
+  <div class="steps">
+    <div class="step"><em>1</em><p>Elige tu modelo, color y talla del catálogo.</p></div>
+    <div class="step"><em>2</em><p>Escríbenos por WhatsApp confirmando el pedido.</p></div>
+    <div class="step"><em>3</em><p>Coordinamos el pago y el envío o recojo. Listo, tus balerinas van en camino.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="fcol">
+    <div class="fbrand" id="footerBrand">Betania Shoes</div>
+    <span id="footerTagline">Calzado femenino · Lima, Perú</span>
+  </div>
+  <div class="fcol">
+    <span id="footerWsp">WhatsApp: +51 912 444 453</span>
+    <span id="footerInstagram">Instagram: @betania.shoes</span>
+  </div>
+  <div class="fcol">
+    <span id="footerPagos">Pagos: Yape, Plin, transferencia</span>
+    <span id="footerCopyright">© 2026 Betania Shoes</span>
+  </div>
+</footer>
+
+<!-- Los datos del catálogo (marca, precio, categorías y fotos) viven en este
+     archivo aparte para que se puedan editar sin tocar el diseño. -->
+<script src="datos-catalogo.js"></script>
+<script>
+(function(){
+  var C = window.CATALOGO || {};
+  var marca = C.marca || {};
+  var PRICE = C.precio;
+  var SIZES = C.tallasGenerales;
+  var products = C.productos || [];
+  var groups = C.categorias || [];
+  var WSP = marca.whatsapp || '';
+
+  function money(n){ return 'S/ ' + Number(n).toFixed(2); }
+  function wspLink(text){ return 'https://wa.me/' + WSP + '?text=' + encodeURIComponent(text); }
+
+  // --- 1. Marca: encabezado y pie de página ---
+  document.getElementById('brandMark').textContent = (marca.nombre||'?').charAt(0).toUpperCase();
+  document.getElementById('brandName').textContent = marca.nombre || '';
+  document.getElementById('brandTag').textContent = marca.lema || '';
+  document.getElementById('footerBrand').textContent = marca.nombre || '';
+  document.getElementById('footerTagline').textContent = marca.lema || '';
+  document.getElementById('footerWsp').textContent = 'WhatsApp: +' + (WSP.slice(0,2)) + ' ' + (WSP.slice(2,5)) + ' ' + (WSP.slice(5,8)) + ' ' + (WSP.slice(8));
+  document.getElementById('footerInstagram').textContent = 'Instagram: ' + (marca.instagram || '');
+  document.getElementById('footerPagos').textContent = 'Pagos: ' + (marca.pagos || '');
+  document.getElementById('footerCopyright').textContent = '© ' + (marca.anioCopyright||'') + ' ' + (marca.nombre||'');
+
+  document.getElementById('wspHeader').href = wspLink('Hola, quiero ver el catálogo de balerinas');
+  document.getElementById('wspHero').href = wspLink('Hola, quiero hacer un pedido');
+  if (groups[0]) {
+    document.getElementById('verCatalogo').href = '#' + groups[0].id;
+  }
+
+  // --- 2. Estadísticas del hero (se calculan solas) ---
+  document.getElementById('statPrecio').textContent = money(PRICE);
+  document.getElementById('statTallas').textContent = C.rangoTallasDestacado || SIZES;
+  var totalColores = products.length;
+  groups.forEach(function(g){ if (g.banner) totalColores += g.banner.colores.length; });
+  document.getElementById('statColores').textContent = totalColores;
+
+  // --- 3. Menú y filtros (uno por categoría, generados automáticamente) ---
+  var nav = document.getElementById('navLinks');
+  nav.innerHTML = groups.map(function(g){ return '<a href="#'+g.id+'">'+g.nombre+'</a>'; }).join('') +
+    '<a href="#pedidos">Cómo pedir</a>';
+
+  var filters = document.getElementById('filters');
+  filters.innerHTML = '<button class="chip active" data-filter="all">Todas</button>' +
+    groups.map(function(g){ return '<button class="chip" data-filter="'+g.id+'">'+g.nombre+'</button>'; }).join('');
+
+  // --- 4. Tarjetas de producto y banners ---
+  function bannerHTML(b){
+    var msg = 'Hola, me interesa la ' + b.titulo + ' (color: ¿? / talla: ¿?)';
+    return ''+
+    '<div class="banner-card">'+
+      '<img src="'+b.foto+'" alt="'+b.alt+'" loading="lazy">'+
+      '<div class="banner-info">'+
+        '<h3>'+b.titulo+'</h3>'+
+        '<p>'+b.descripcion+'</p>'+
+        '<div class="color-list">'+ b.colores.map(function(c){return '<span class="color-tag">'+c+'</span>';}).join('') +'</div>'+
+        '<div class="banner-price tabular">'+money(PRICE)+' · Tallas '+SIZES+'</div>'+
+        '<a class="btn-wsp wsp-share" data-name="'+b.titulo+'" data-img="'+b.foto+'" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
+          '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>'+
+          'Pedir por WhatsApp'+
+        '</a>'+
+      '</div>'+
+    '</div>';
+  }
+
+  function cardHTML(p, catNombre){
+    var msg = 'Hola, me interesa la ' + p.nombre + ' (talla: ¿?)';
+    return ''+
+    '<article class="card" data-cat="'+p.categoria+'">'+
+      '<div class="card-art">'+
+        '<span class="badge">'+catNombre+'</span>'+
+        '<img src="'+p.foto+'" alt="'+p.nombre+'" loading="lazy">'+
+      '</div>'+
+      '<div class="card-body">'+
+        '<div class="card-name">'+p.nombre+'</div>'+
+        '<div class="card-meta">Tallas '+(p.tallas||SIZES)+'</div>'+
+        '<div class="card-price tabular">'+money(PRICE)+'</div>'+
+        '<div class="card-foot">'+
+          '<a class="btn-wsp wsp-share" data-name="'+p.nombre+'" data-img="'+p.foto+'" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
+            '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>'+
+            'Pedir por WhatsApp'+
+          '</a>'+
+        '</div>'+
+      '</div>'+
+    '</article>';
+  }
+
+  var container = document.getElementById('catSections');
+  var html = '';
+  groups.forEach(function(g){
+    var items = products.filter(function(p){return p.categoria===g.id;});
+    html += '<section id="'+g.id+'">'+
+      '<div class="section-head"><h2>'+g.nombre+'</h2><span>'+g.descripcion+'</span></div>'+
+      (g.banner ? bannerHTML(g.banner) : '') +
+      (items.length ? '<div class="grid">'+ items.map(function(p){return cardHTML(p, g.nombre);}).join('') +'</div>' : '') +
+    '</section>';
+  });
+
+  container.innerHTML = html;
+
+  // --- compartir con foto adjunta cuando el celular lo permite (Web Share API) ---
+  // En celulares compatibles (la mayoría de Android/iPhone), al tocar el botón se abre
+  // el panel nativo para elegir WhatsApp, con la foto y el mensaje ya listos para enviar.
+  // Si el navegador no lo soporta (por ejemplo en computadora), el botón simplemente
+  // abre el link de WhatsApp con el texto, como antes.
+  document.querySelectorAll('.wsp-share').forEach(function(link){
+    link.addEventListener('click', function(ev){
+      if (!navigator.canShare) return; // sin soporte: deja el link normal
+      var name = link.getAttribute('data-name');
+      var imgUrl = link.getAttribute('data-img');
+      var text = 'Hola, me interesa la ' + name + ' (talla: ¿?)';
+      ev.preventDefault();
+      fetch(imgUrl)
+        .then(function(res){ return res.blob(); })
+        .then(function(blob){
+          var file = new File([blob], imgUrl.split('/').pop(), {type: blob.type || 'image/jpeg'});
+          if (navigator.canShare({files:[file]})) {
+            return navigator.share({files:[file], text:text, title:name});
+          }
+          throw new Error('no-file-share');
+        })
+        .catch(function(){
+          window.open(link.href, '_blank');
+        });
+    });
+  });
+
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){c.classList.remove('active');});
+      chip.classList.add('active');
+      var f = chip.getAttribute('data-filter');
+      document.querySelectorAll('#catSections > section[id]').forEach(function(sec){
+        if(f==='all'){ sec.hidden=false; return; }
+        sec.hidden = sec.id!==f;
+      });
+    });
+  });
+})();
+</script>

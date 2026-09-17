@@ -1,0 +1,41 @@
+CATÁLOGO BETANIA SHOES — GUÍA RÁPIDA
+=====================================
+
+Este proyecto tiene 3 partes:
+
+1) catalogo-bailarinas.html
+   Es la página que ven tus clientes. Tiene el diseño, los colores y el
+   funcionamiento del catálogo. NO necesitas editar este archivo nunca
+   para agregar productos o categorías nuevas.
+
+2) datos-catalogo.js
+   Es TU archivo para administrar el catálogo: tu marca, tu WhatsApp,
+   el precio, las tallas, las categorías y cada foto con su nombre.
+   Ábrelo con el Bloc de notas, VS Code o cualquier editor de texto.
+   Adentro tiene comentarios en español que explican exactamente cómo:
+     - agregar un color nuevo a una categoría que ya existe
+     - crear una categoría nueva desde cero
+     - cambiar tu WhatsApp, precio o tallas
+
+3) imgs/
+   La carpeta con todas las fotos de los productos. Cuando agregues un
+   modelo nuevo, guarda su foto aquí y luego escribe su nombre en
+   datos-catalogo.js (por ejemplo: imgs/xiomi-morado.jpg).
+
+CÓMO VER TUS CAMBIOS
+---------------------
+- En tu computadora: haz doble clic en catalogo-bailarinas.html y se abre
+  en tu navegador, mostrando ya los cambios que hiciste en
+  datos-catalogo.js.
+- En internet (para que tus clientes lo vean): vuelve a subir estos 3
+  elementos juntos (el .html, el datos-catalogo.js y la carpeta imgs/)
+  al mismo lugar donde lo publicaste (GitHub Pages, Netlify, etc.),
+  reemplazando los archivos anteriores.
+
+IMPORTANTE
+----------
+- Al editar datos-catalogo.js, respeta las comas { } y comillas ' '
+  tal como están en los ejemplos. Si algo deja de funcionar, revisa
+  que no falte una coma o una comilla.
+- Los nombres de archivo de fotos no deben tener espacios ni tildes
+  (usa guiones: xiomi-morado.jpg, no "xiomi morado.jpg").

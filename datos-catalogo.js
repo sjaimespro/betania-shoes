@@ -62,10 +62,11 @@ var CATALOGO = {
       banner: {
         foto:'imgs/yute-banner.jpg',
         titulo:'Balerina Tejido con Moño',
+          precio: 40.00,
         descripcion:'Cuerpo tejido tipo yute con moño de charol y correa de hebilla. Disponible en:',
         colores:['Negro','Vino','Camel'],
         alt:'Balerinas tejidas tipo yute con moño, en negro, vino y camel'
-         precio: 38.00,
+      
       }
     },
     { id:'encaje', nombre:'Encaje', descripcion:'Delicadas y románticas, ideales para ocasiones especiales' },

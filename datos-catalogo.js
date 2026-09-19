@@ -30,7 +30,9 @@ var CATALOGO = {
   },
 
   // --- 2. PRECIO Y TALLAS POR DEFECTO ------------------------------------
-  // Se usan en todos los productos que no tengan su propio campo "tallas".
+  // Este precio se usa en TODOS los productos que no tengan su propio campo
+  // "precio" (ver más abajo, en la sección 4, cómo poner un precio distinto
+  // a un modelo en particular). Lo mismo para "tallas".
   precio: 38.00,
   tallasGenerales: '35 – 39',
   rangoTallasDestacado: '35–40', // el que se ve arriba en las estadísticas
@@ -46,6 +48,8 @@ var CATALOGO = {
   // colores (como "Correas cruzadas"), agrégale la parte "banner" (mira el
   // ejemplo de 'correas' más abajo). Si cada color tiene su propia foto,
   // NO le pongas "banner" — solo agrega sus fotos en la lista de productos.
+  // Un "banner" también puede tener su propio "precio" (si no lo pones,
+  // usa el precio general de arriba).
   categorias: [
     { id:'mono', nombre:'Modelo Xiomi', descripcion:'Nuestro modelo estrella, con correa y hebilla en el tobillo' },
     { id:'mono-solo', nombre:'Moño', descripcion:'El clásico de un solo cuerpo, sin correa' },
@@ -79,6 +83,12 @@ var CATALOGO = {
   // nombre, y foto (la ruta a la imagen dentro de la carpeta imgs/).
   // El campo "tallas" es OPCIONAL — solo agrégalo si ese modelo tiene
   // tallas distintas a las generales (como pasa con Mules, que es 35–40).
+  //
+  // PARA PONERLE UN PRECIO DISTINTO A UN MODELO:
+  //   Agrégale el campo "precio" a esa línea, por ejemplo:
+  //     { categoria:'mono', nombre:'Balerina Xiomi Negro', foto:'imgs/xiomi-negro.jpg', precio: 42.00 }
+  //   Si un producto NO tiene "precio", usa el precio general de arriba (38.00).
+  //   Puedes cambiarle el precio a uno solo, a varios, o a todos — como prefieras.
   //
   // PARA AGREGAR UN COLOR NUEVO a una categoría que ya existe:
   //   1) Guarda la foto dentro de la carpeta imgs/ (dale un nombre sin

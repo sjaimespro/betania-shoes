@@ -180,7 +180,7 @@
     background:var(--surface-2); aspect-ratio:4/5;
     position:relative; overflow:hidden;
   }
-  .card-art img{width:100%; height:100%; object-fit:cover; display:block;}
+  .card-art img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in;}
   .badge{
     position:absolute; top:10px; left:10px;
     background:var(--surface); color:var(--ink-soft);
@@ -200,7 +200,7 @@
     overflow:hidden; box-shadow:var(--shadow);
     display:grid; grid-template-columns:1.3fr 1fr;
   }
-  .banner-card img{width:100%; height:100%; object-fit:cover; display:block; min-height:180px;}
+  .banner-card img{width:100%; height:100%; object-fit:cover; display:block; min-height:180px; cursor:zoom-in;}
   .banner-info{padding:22px; display:flex; flex-direction:column; gap:10px;}
   .banner-info h3{font-family:'Fraunces',serif; font-size:1.2rem; font-weight:600;}
   .banner-info p{margin:0; color:var(--ink-soft); font-size:.88rem;}
@@ -244,11 +244,30 @@
     nav{display:none;}
     .filters{position:static;}
   }
+
+  /* --- lightbox: ver la foto en grande al hacer clic --- */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(20,10,12,.92);
+    display:none; align-items:center; justify-content:center;
+    z-index:1000; padding:32px;
+  }
+  .lightbox.active{display:flex;}
+  .lightbox img{
+    max-width:100%; max-height:100%; border-radius:12px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5); object-fit:contain;
+  }
+  .lightbox-close{
+    position:absolute; top:16px; right:16px; width:44px; height:44px;
+    border-radius:50%; background:rgba(255,255,255,.15); border:none;
+    color:#fff; font-size:26px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,.3);}
 </style>
 </head>
 <body>
 <div class="notice" id="notice">
-  📝 Catálogo de Betania Shoes: precio único S/ 38 y WhatsApp +51 912 444 453 en cada botón. Desde el celular, "Pedir por WhatsApp" adjunta la foto del modelo automáticamente.
+  📝 Catálogo de Betania Shoes: precio único S/ 38 y WhatsApp +51 912 444 453 en cada botón. Toca "Pedir por WhatsApp" para escribirnos directo, con el mensaje ya listo.
   <button aria-label="Cerrar aviso" onclick="document.getElementById('notice').style.display='none'">✕</button>
 </div>
 
@@ -315,6 +334,12 @@
   </div>
 </footer>
 
+<!-- Ventana para ver una foto en grande al hacer clic sobre ella -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <!-- Los datos del catálogo (marca, precio, categorías y fotos) viven en este
      archivo aparte para que se puedan editar sin tocar el diseño. -->
 <script src="datos-catalogo.js"></script>
@@ -375,7 +400,7 @@
         '<p>'+b.descripcion+'</p>'+
         '<div class="color-list">'+ b.colores.map(function(c){return '<span class="color-tag">'+c+'</span>';}).join('') +'</div>'+
         '<div class="banner-price tabular">'+money(PRICE)+' · Tallas '+SIZES+'</div>'+
-        '<a class="btn-wsp wsp-share" data-name="'+b.titulo+'" data-img="'+b.foto+'" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
+        '<a class="btn-wsp" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
           '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>'+
           'Pedir por WhatsApp'+
         '</a>'+
@@ -396,7 +421,7 @@
         '<div class="card-meta">Tallas '+(p.tallas||SIZES)+'</div>'+
         '<div class="card-price tabular">'+money(PRICE)+'</div>'+
         '<div class="card-foot">'+
-          '<a class="btn-wsp wsp-share" data-name="'+p.nombre+'" data-img="'+p.foto+'" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
+          '<a class="btn-wsp" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
             '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>'+
             'Pedir por WhatsApp'+
           '</a>'+
@@ -418,33 +443,6 @@
 
   container.innerHTML = html;
 
-  // --- compartir con foto adjunta cuando el celular lo permite (Web Share API) ---
-  // En celulares compatibles (la mayoría de Android/iPhone), al tocar el botón se abre
-  // el panel nativo para elegir WhatsApp, con la foto y el mensaje ya listos para enviar.
-  // Si el navegador no lo soporta (por ejemplo en computadora), el botón simplemente
-  // abre el link de WhatsApp con el texto, como antes.
-  document.querySelectorAll('.wsp-share').forEach(function(link){
-    link.addEventListener('click', function(ev){
-      if (!navigator.canShare) return; // sin soporte: deja el link normal
-      var name = link.getAttribute('data-name');
-      var imgUrl = link.getAttribute('data-img');
-      var text = 'Hola, me interesa la ' + name + ' (talla: ¿?)';
-      ev.preventDefault();
-      fetch(imgUrl)
-        .then(function(res){ return res.blob(); })
-        .then(function(blob){
-          var file = new File([blob], imgUrl.split('/').pop(), {type: blob.type || 'image/jpeg'});
-          if (navigator.canShare({files:[file]})) {
-            return navigator.share({files:[file], text:text, title:name});
-          }
-          throw new Error('no-file-share');
-        })
-        .catch(function(){
-          window.open(link.href, '_blank');
-        });
-    });
-  });
-
   var chips = document.querySelectorAll('.chip');
   chips.forEach(function(chip){
     chip.addEventListener('click', function(){
@@ -456,6 +454,30 @@
         sec.hidden = sec.id!==f;
       });
     });
+  });
+
+  // --- ver la foto en grande al hacer clic (lightbox) ---
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxClose = document.getElementById('lightboxClose');
+  function openLightbox(src, alt){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('click', function(ev){
+    var img = ev.target.closest('.card-art img, .banner-card img');
+    if (img){ openLightbox(img.src, img.alt); return; }
+    if (ev.target === lightbox || ev.target === lightboxClose){ closeLightbox(); }
+  });
+  document.addEventListener('keydown', function(ev){
+    if (ev.key === 'Escape') closeLightbox();
   });
 })();
 </script>

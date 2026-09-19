@@ -101,7 +101,9 @@
     background:var(--accent); color:#fff;
     display:flex; align-items:center; justify-content:center;
     font-family:'Fraunces',serif; font-weight:600; font-size:1rem;
+    overflow:hidden;
   }
+  .brand-mark img{width:100%; height:100%; object-fit:cover; display:block;}
   .brand-name{font-size:1.3rem; font-weight:600;}
   .brand-tag{font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; text-transform:uppercase;}
   nav{display:flex; gap:18px; font-size:.88rem; font-weight:500;}
@@ -357,7 +359,13 @@
   function wspLink(text){ return 'https://wa.me/' + WSP + '?text=' + encodeURIComponent(text); }
 
   // --- 1. Marca: encabezado y pie de página ---
-  document.getElementById('brandMark').textContent = (marca.nombre||'?').charAt(0).toUpperCase();
+  var brandMark = document.getElementById('brandMark');
+  if (marca.logo) {
+    brandMark.innerHTML = '<img src="'+marca.logo+'" alt="'+(marca.nombre||'Logo')+'">';
+    brandMark.style.background = 'transparent';
+  } else {
+    brandMark.textContent = (marca.nombre||'?').charAt(0).toUpperCase();
+  }
   document.getElementById('brandName').textContent = marca.nombre || '';
   document.getElementById('brandTag').textContent = marca.lema || '';
   document.getElementById('footerBrand').textContent = marca.nombre || '';

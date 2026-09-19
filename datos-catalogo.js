@@ -29,7 +29,7 @@ var CATALOGO = {
     anioCopyright: '2026',
     // Logo: la foto que se ve en el círculo junto al nombre de la marca.
     // Si quieres volver a mostrar solo la letra "B", deja esto vacío: logo: ''
-    logo: ''
+    logo: 'imgs/Betania-logo.png'
   },
 
   // --- 2. PRECIO Y TALLAS POR DEFECTO ------------------------------------

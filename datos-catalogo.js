@@ -115,7 +115,8 @@ var CATALOGO = {
     { categoria:'lunares', nombre:'Balerina Lunares Negro Satinado', foto:'imgs/lunares-negro2.jpg' },
 
     { categoria:'tejido', nombre:'Balerina Tejido Verde', foto:'imgs/tejido-verde.jpg' },
-    { categoria:'tejido', nombre:'Balerina Tejido Lila', foto:'imgs/tejido-lila.jpg' },
+    { categoria:'tejido', nombre:'Balerina Tejido Lila', foto:'imgs/tejido-lila.jpg', precio: 40.00 },
+     
 
     { categoria:'encaje', nombre:'Balerina Encaje Negro', foto:'imgs/encaje-negro.jpg' },
     { categoria:'encaje', nombre:'Balerina Encaje Blanco', foto:'imgs/encaje-blanco.jpg' },

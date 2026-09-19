@@ -106,6 +106,7 @@
   .brand-mark img{width:100%; height:100%; object-fit:cover; display:block;}
   .brand-name{font-size:1.3rem; font-weight:600;}
   .brand-tag{font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; text-transform:uppercase;}
+  .brand-logo{height:42px; width:auto; max-width:220px; object-fit:contain; display:block;}
   nav{display:flex; gap:18px; font-size:.88rem; font-weight:500;}
   nav a{text-decoration:none; color:var(--ink-soft);}
   nav a:hover, nav a:focus-visible{color:var(--accent);}
@@ -274,13 +275,7 @@
 </div>
 
 <header>
-  <div class="brand">
-    <div class="brand-mark" id="brandMark">B</div>
-    <div>
-      <div class="brand-name" id="brandName">Betania Shoes</div>
-      <div class="brand-tag" id="brandTag">Calzado femenino · Lima, Perú</div>
-    </div>
-  </div>
+  <div class="brand" id="brandBox"></div>
   <nav id="navLinks"></nav>
   <a class="btn-wsp" id="wspHeader" href="#" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>
@@ -359,15 +354,20 @@
   function wspLink(text){ return 'https://wa.me/' + WSP + '?text=' + encodeURIComponent(text); }
 
   // --- 1. Marca: encabezado y pie de página ---
-  var brandMark = document.getElementById('brandMark');
+  // Si "marca.logo" tiene una foto, se muestra ESA imagen sola en el encabezado
+  // (reemplaza el círculo y el nombre escrito). Si "logo" está vacío, se arma
+  // el diseño anterior: un círculo con la inicial + el nombre y el lema al lado.
+  var brandBox = document.getElementById('brandBox');
   if (marca.logo) {
-    brandMark.innerHTML = '<img src="'+marca.logo+'" alt="'+(marca.nombre||'Logo')+'">';
-    brandMark.style.background = 'transparent';
+    brandBox.innerHTML = '<img class="brand-logo" src="'+marca.logo+'" alt="'+(marca.nombre||'Logo')+'">';
   } else {
-    brandMark.textContent = (marca.nombre||'?').charAt(0).toUpperCase();
+    brandBox.innerHTML =
+      '<div class="brand-mark">'+(marca.nombre||'?').charAt(0).toUpperCase()+'</div>'+
+      '<div>'+
+        '<div class="brand-name">'+(marca.nombre||'')+'</div>'+
+        '<div class="brand-tag">'+(marca.lema||'')+'</div>'+
+      '</div>';
   }
-  document.getElementById('brandName').textContent = marca.nombre || '';
-  document.getElementById('brandTag').textContent = marca.lema || '';
   document.getElementById('footerBrand').textContent = marca.nombre || '';
   document.getElementById('footerTagline').textContent = marca.lema || '';
   document.getElementById('footerWsp').textContent = 'WhatsApp: +' + (WSP.slice(0,2)) + ' ' + (WSP.slice(2,5)) + ' ' + (WSP.slice(5,8)) + ' ' + (WSP.slice(8));

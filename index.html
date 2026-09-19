@@ -267,7 +267,7 @@
 </head>
 <body>
 <div class="notice" id="notice">
-  📝 Catálogo de Betania Shoes: precio único S/ 38 y WhatsApp +51 912 444 453 en cada botón. Toca "Pedir por WhatsApp" para escribirnos directo, con el mensaje ya listo.
+  📝 Catálogo de Betania Shoes: el precio de cada modelo aparece en su tarjeta y WhatsApp +51 912 444 453 en cada botón. Toca "Pedir por WhatsApp" para escribirnos directo, con el mensaje ya listo.
   <button aria-label="Cerrar aviso" onclick="document.getElementById('notice').style.display='none'">✕</button>
 </div>
 
@@ -298,7 +298,7 @@
       <a class="btn-outline" id="verCatalogo" href="#mono">Ver catálogo</a>
     </div>
     <div class="stat-row">
-      <div class="stat"><b class="tabular" id="statPrecio">S/ 38</b><span>Precio único</span></div>
+      <div class="stat"><b class="tabular" id="statPrecio">S/ 38</b><span id="statPrecioLabel">Precio único</span></div>
       <div class="stat"><b class="tabular" id="statTallas">35–40</b><span>Tallas disponibles</span></div>
       <div class="stat"><b class="tabular" id="statColores">30</b><span>Colores en catálogo</span></div>
     </div>
@@ -374,7 +374,19 @@
   }
 
   // --- 2. Estadísticas del hero (se calculan solas) ---
-  document.getElementById('statPrecio').textContent = money(PRICE);
+  // Si todos los modelos tienen el mismo precio se muestra "Precio único".
+  // Si pusiste precios distintos por modelo, se muestra "Desde S/ X" (el más bajo).
+  var preciosTodos = products.map(function(p){ return (p.precio!=null ? p.precio : PRICE); });
+  groups.forEach(function(g){ if (g.banner) preciosTodos.push(g.banner.precio!=null ? g.banner.precio : PRICE); });
+  var precioMin = Math.min.apply(null, preciosTodos.concat([PRICE]));
+  var precioMax = Math.max.apply(null, preciosTodos.concat([PRICE]));
+  if (precioMin === precioMax) {
+    document.getElementById('statPrecio').textContent = money(precioMin);
+    document.getElementById('statPrecioLabel').textContent = 'Precio único';
+  } else {
+    document.getElementById('statPrecio').textContent = 'Desde ' + money(precioMin);
+    document.getElementById('statPrecioLabel').textContent = 'Según el modelo';
+  }
   document.getElementById('statTallas').textContent = C.rangoTallasDestacado || SIZES;
   var totalColores = products.length;
   groups.forEach(function(g){ if (g.banner) totalColores += g.banner.colores.length; });
@@ -399,7 +411,7 @@
         '<h3>'+b.titulo+'</h3>'+
         '<p>'+b.descripcion+'</p>'+
         '<div class="color-list">'+ b.colores.map(function(c){return '<span class="color-tag">'+c+'</span>';}).join('') +'</div>'+
-        '<div class="banner-price tabular">'+money(PRICE)+' · Tallas '+SIZES+'</div>'+
+        '<div class="banner-price tabular">'+money(b.precio!=null?b.precio:PRICE)+' · Tallas '+(b.tallas||SIZES)+'</div>'+
         '<a class="btn-wsp" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
           '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>'+
           'Pedir por WhatsApp'+
@@ -419,7 +431,7 @@
       '<div class="card-body">'+
         '<div class="card-name">'+p.nombre+'</div>'+
         '<div class="card-meta">Tallas '+(p.tallas||SIZES)+'</div>'+
-        '<div class="card-price tabular">'+money(PRICE)+'</div>'+
+        '<div class="card-price tabular">'+money(p.precio!=null?p.precio:PRICE)+'</div>'+
         '<div class="card-foot">'+
           '<a class="btn-wsp" href="'+wspLink(msg)+'" target="_blank" rel="noopener">'+
             '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.7 1.7.8 1.8c.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.3.4-.1.7.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>'+

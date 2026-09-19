@@ -59,6 +59,7 @@ var CATALOGO = {
       banner: {
         foto:'imgs/yute-banner.jpg',
         titulo:'Balerina Tejido con Moño',
+         precio: 40.00,
         descripcion:'Cuerpo tejido tipo yute con moño de charol y correa de hebilla. Disponible en:',
         colores:['Negro','Vino','Camel'],
         alt:'Balerinas tejidas tipo yute con moño, en negro, vino y camel'
@@ -114,14 +115,14 @@ var CATALOGO = {
     { categoria:'lunares', nombre:'Balerina Lunares Vino', foto:'imgs/lunares-vino.jpg' },
     { categoria:'lunares', nombre:'Balerina Lunares Negro Satinado', foto:'imgs/lunares-negro2.jpg' },
 
-    { categoria:'tejido', nombre:'Balerina Tejido Verde', foto:'imgs/tejido-verde.jpg' },
+    { categoria:'tejido', nombre:'Balerina Tejido Verde', foto:'imgs/tejido-verde.jpg', precio: 40.00 },
     { categoria:'tejido', nombre:'Balerina Tejido Lila', foto:'imgs/tejido-lila.jpg', precio: 40.00 },
      
 
-    { categoria:'encaje', nombre:'Balerina Encaje Negro', foto:'imgs/encaje-negro.jpg' },
-    { categoria:'encaje', nombre:'Balerina Encaje Blanco', foto:'imgs/encaje-blanco.jpg' },
+    { categoria:'encaje', nombre:'Balerina Encaje Negro', foto:'imgs/encaje-negro.jpg', precio: 40.00  },
+    { categoria:'encaje', nombre:'Balerina Encaje Blanco', foto:'imgs/encaje-blanco.jpg', precio: 40.00  },
 
-    { categoria:'mules', nombre:'Mule Encaje Dorado', foto:'imgs/mule-dorado.jpg', tallas:'35 – 40' },
-    { categoria:'mules', nombre:'Mule Encaje Rojo', foto:'imgs/mule-rojo.jpg', tallas:'35 – 40' }
+    { categoria:'mules', nombre:'Mule Encaje Dorado', foto:'imgs/mule-dorado.jpg', tallas:'35 – 40', precio: 40.00  },
+    { categoria:'mules', nombre:'Mule Encaje Rojo', foto:'imgs/mule-rojo.jpg', tallas:'35 – 40', precio: 40.00  }
   ]
 };

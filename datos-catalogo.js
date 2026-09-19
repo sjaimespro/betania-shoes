@@ -26,7 +26,10 @@ var CATALOGO = {
     whatsapp: '51912444453',       // solo números, con código de país (51 = Perú)
     instagram: '@betania.shoes',
     pagos: 'Yape, Plin, transferencia',
-    anioCopyright: '2026'
+    anioCopyright: '2026',
+    // Logo: la foto que se ve en el círculo junto al nombre de la marca.
+    // Si quieres volver a mostrar solo la letra "B", deja esto vacío: logo: ''
+    logo: 'imgs/Betania-logo.png'
   },
 
   // --- 2. PRECIO Y TALLAS POR DEFECTO ------------------------------------
@@ -34,7 +37,7 @@ var CATALOGO = {
   // "precio" (ver más abajo, en la sección 4, cómo poner un precio distinto
   // a un modelo en particular). Lo mismo para "tallas".
   precio: 38.00,
-  tallasGenerales: '35 – 40',
+  tallasGenerales: '35 – 39',
   rangoTallasDestacado: '35–40', // el que se ve arriba en las estadísticas
 
   // --- 3. CATEGORÍAS ------------------------------------------------------
@@ -59,7 +62,6 @@ var CATALOGO = {
       banner: {
         foto:'imgs/yute-banner.jpg',
         titulo:'Balerina Tejido con Moño',
-         precio: 40.00,
         descripcion:'Cuerpo tejido tipo yute con moño de charol y correa de hebilla. Disponible en:',
         colores:['Negro','Vino','Camel'],
         alt:'Balerinas tejidas tipo yute con moño, en negro, vino y camel'

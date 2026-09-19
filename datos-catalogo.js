@@ -34,7 +34,7 @@ var CATALOGO = {
   // "precio" (ver más abajo, en la sección 4, cómo poner un precio distinto
   // a un modelo en particular). Lo mismo para "tallas".
   precio: 38.00,
-  tallasGenerales: '35 – 39',
+  tallasGenerales: '35 – 40',
   rangoTallasDestacado: '35–40', // el que se ve arriba en las estadísticas
 
   // --- 3. CATEGORÍAS ------------------------------------------------------
